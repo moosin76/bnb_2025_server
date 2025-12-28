@@ -9,6 +9,8 @@ router.get('/', (ctx, next) => {
 	};
 });
 
+
+
 router.get('/:id', (ctx, next) => {
 	const id = ctx.params.id;
 	console.log("userID:", id)
@@ -17,6 +19,13 @@ router.get('/:id', (ctx, next) => {
 		id,
 	};
 });
+
+// 이메일 중복 확인
+router.get('/overlab/:email', $API_CALL(async (ctx, next) => {
+	const email = ctx.params.email;
+	const data = await userCtrl.overlabCheck(email);
+	return data;
+}));
 
 // 회원가입
 router.post('/', $API_CALL(async (ctx, next) => {
