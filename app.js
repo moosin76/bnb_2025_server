@@ -33,6 +33,12 @@ app.use(async (ctx, next) => {
 	ctx.set('X-Response-Time', `${ms}ms`);
 });
 
+// CORS 설정
+const cors = require('@koa/cors');
+app.use(cors({
+	origin: '*',
+	credentials: true, // 쿠키 허용
+}))
 
 const ipv4 = require('./middlewares/ipv4');
 app.use(ipv4);
