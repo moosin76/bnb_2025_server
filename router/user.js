@@ -36,6 +36,13 @@ router.post('/', $API_CALL(async (ctx, next) => {
 	return data;
 }));
 
+// 로그인
+router.post('/login', $API_CALL(async (ctx)=>{
+	const {email, password} = ctx.request.body;
+	const data = await userCtrl.login(email, password, ctx.ipv4);
+	return data;
+}))
+
 router.put('/:id', (ctx, next) => {
 	const id = ctx.params.id;
 	const payload = ctx.request.body;
