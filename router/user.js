@@ -36,9 +36,16 @@ router.post('/', $API_CALL(async (ctx, next) => {
 	return data;
 }));
 
+// 인증
+router.post('/auth', $API_CALL(async (ctx) => {
+	const { token } = ctx.request.body
+	const user = await userCtrl.auth(token);
+	return user;
+}))
+
 // 로그인
-router.post('/login', $API_CALL(async (ctx)=>{
-	const {email, password} = ctx.request.body;
+router.post('/login', $API_CALL(async (ctx) => {
+	const { email, password } = ctx.request.body;
 	const data = await userCtrl.login(email, password, ctx.ipv4);
 	return data;
 }))
