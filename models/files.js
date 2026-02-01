@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
 	const files = sequelize.define('files', {
-		userId: {
-			type: DataTypes.INTEGER,
+		userEmail: {
+			type: DataTypes.STRING,
 			allowNull: true,
 		},
 		boardName: {

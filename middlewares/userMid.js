@@ -4,7 +4,7 @@ module.exports = async (ctx, next) => {
 	const token = jwtUtil.getAuthToken(ctx);
 	try {
 		if (!token) {
-			throw new Error("토큰이 없습니다.")
+			// throw new Error("토큰이 없습니다.")
 		}
 		// console.log('token', token);
 		const { email } = jwtUtil.verify(token);

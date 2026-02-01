@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
 		email: {
 			type: DataTypes.STRING,
 			allowNull: false,
-			unique: 'email',
+			primaryKey: true,
 			comment: '이메일 사용자 ID처럼 사용됨'
 		},
 		name: {

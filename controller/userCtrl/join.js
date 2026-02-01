@@ -17,7 +17,7 @@ module.exports = async (payload, photo, createdIp) => {
 		if (photo) {
 			// DB 저장 객체
 			const filePayload = {
-				userId: user.id,
+				userEmail: user.email,
 				boardName: 'member',
 				type: 'photo',
 				...fileUtil.write('/member', photo),

@@ -1,5 +1,6 @@
 const pwUtil = require('../../lib/pwUtil');
 const jwtUtil = require('../../lib/jwtUtil');
+const fileUtil = require('../../lib/fileUtil');
 const moment = require('moment');
 
 module.exports = async (email, password, connectedIp) => {
@@ -32,10 +33,19 @@ module.exports = async (email, password, connectedIp) => {
 		connectedAt: moment().format('YYYY-MM-DD HH:mm:ss'),
 		connectedIp,
 	}
-	await $DB.user.update(updatePayload, {where:{email}});
+	await $DB.user.update(updatePayload, { where: { email } });
 
 	user.connectedAt = updatePayload.connectedAt;
 	user.connectedIp = connectedIp;
-	
+
+	const photo = await $DB.files.findOne({
+		where: {
+			userEmail: user.email,
+			boardName: 'member',
+			type: 'photo'
+		}
+	})
+	user.photo = fileUtil.getFileUrl(photo);
+
 	return { user, token }
 }
