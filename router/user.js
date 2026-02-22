@@ -10,6 +10,17 @@ router.get('/', (ctx, next) => {
 });
 
 
+router.get('/find-email', $API_CALL(async (ctx) => {
+	const { name, tel } = ctx.query;
+	const data = await userCtrl.findEmail(name, tel);
+	return data;
+}))
+
+router.get('/find-pw', $API_CALL(async (ctx) => {
+	const { email } = ctx.query;
+	const data = await userCtrl.findPw(email);
+	return data;
+}))
 
 router.get('/:id', (ctx, next) => {
 	const id = ctx.params.id;
@@ -26,6 +37,7 @@ router.get('/overlab/:email', $API_CALL(async (ctx, next) => {
 	const data = await userCtrl.overlabCheck(email);
 	return data;
 }));
+
 
 // 회원가입
 router.post('/', $API_CALL(async (ctx, next) => {
