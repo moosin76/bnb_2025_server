@@ -22,6 +22,8 @@ router.get('/find-pw', $API_CALL(async (ctx) => {
 	return data;
 }))
 
+
+
 router.get('/:id', (ctx, next) => {
 	const id = ctx.params.id;
 	console.log("userID:", id)
@@ -59,6 +61,13 @@ router.post('/auth', $API_CALL(async (ctx) => {
 router.post('/login', $API_CALL(async (ctx) => {
 	const { email, password } = ctx.request.body;
 	const data = await userCtrl.login(email, password, ctx.ipv4);
+	return data;
+}))
+
+// 비밀번호 초기화
+router.post('/reset-pw', $API_CALL(async (ctx) => {
+	const payload = ctx.request.body;
+	const data = await userCtrl.resetPw(payload);
 	return data;
 }))
 

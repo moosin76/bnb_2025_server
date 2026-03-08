@@ -6,4 +6,5 @@ module.exports = {
 	auth: require('./auth'),
 	findEmail: require('./findEmail'),
 	findPw: require('./findPw'),
+	resetPw: require('./resetPw')
 }
