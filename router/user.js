@@ -17,8 +17,8 @@ router.get('/find-email', $API_CALL(async (ctx) => {
 }))
 
 router.get('/find-pw', $API_CALL(async (ctx) => {
-	const { email } = ctx.query;
-	const data = await userCtrl.findPw(email);
+	const { email, tel } = ctx.query;
+	const data = await userCtrl.findPw(email, tel);
 	return data;
 }))
 
